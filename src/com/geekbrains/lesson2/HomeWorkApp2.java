@@ -15,11 +15,7 @@ public class HomeWorkApp2 {
     }
 
     private static boolean checkingForWithin(int a, int b) {
-        if (a + b > 10 & a + b <= 20) {
-            return true;
-        } else {
-            return false;
-        }
+       return a + b > 10 & a + b <= 20;
     }
 
     private static void isPositive(int a) {
@@ -32,7 +28,7 @@ public class HomeWorkApp2 {
     }
 
     private static boolean checkPositive(int a) {
-        return a >= 0 ? false : true;
+        return a < 0;
     }
 
     private static void printString(String str, int num) {
