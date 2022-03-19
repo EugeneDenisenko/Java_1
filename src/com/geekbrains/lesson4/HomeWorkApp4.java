@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HomeWorkApp4 {
-    private static final int SIZE = 3;
-    private static final int WINNUM = 3;
+    private static final int SIZE = 5;
+    private static final int WIN_LENGTH = 4;
     private static final char DOT_X = 'X';
     private static final char DOT_O = 'O';
     private static final char DOT_EMPTY = '*';
@@ -118,7 +118,7 @@ public class HomeWorkApp4 {
             for (int j = 0; j < SIZE; j++) {
                 if (map[i][j] == ch) {
                     numbers++;
-                    if (numbers == WINNUM) {
+                    if (numbers == WIN_LENGTH) {
                         flag = true;
                         break;
                     }
@@ -137,7 +137,7 @@ public class HomeWorkApp4 {
             for (int j = 0; j < SIZE; j++) {
                 if (map[j][i] == ch) {
                     numbers++;
-                    if (numbers == WINNUM) {
+                    if (numbers == WIN_LENGTH) {
                         flag = true;
                         break;
                     }
@@ -151,21 +151,23 @@ public class HomeWorkApp4 {
 
     private static boolean isWinDiagonal(char ch) {
         boolean winDiag = false;
-        //for (int d = 0; d < (SIZE - WINNUM + 1); d++) {
-            if (checkStraightDiagonal(ch, 0) || checkReverseDiagonal(ch, 0)){
-                winDiag = true;
+        for (int c = 0; c <= SIZE - WIN_LENGTH; c++) {
+            for (int d = 0; d <= SIZE - WIN_LENGTH; d++) {
+                if (checkStraightDiagonal(ch, c, d) || checkReverseDiagonal(ch, c, d)) {
+                    winDiag = true;
+                }
             }
-       // }
+        }
         return winDiag;
     }
 
-    private static boolean checkStraightDiagonal(char ch, int d) {
+    private static boolean checkStraightDiagonal(char ch, int c, int d) {
         boolean flag = false;
         int straightNum = 0;
-        for (int i = 0; i < WINNUM; i++) {
-            if (map[i + d][i + d] == ch) {
+        for (int i = 0; i < WIN_LENGTH; i++) {
+            if (map[i + c][i + d] == ch) {
                 straightNum++;
-                if (straightNum == WINNUM) {
+                if (straightNum == WIN_LENGTH) {
                     flag = true;
                     break;
                 }
@@ -176,13 +178,13 @@ public class HomeWorkApp4 {
         return flag;
     }
 
-    private static boolean checkReverseDiagonal(char ch, int d) {
+    private static boolean checkReverseDiagonal(char ch, int c, int d) {
         boolean flag = false;
         int straightNum = 0;
-        for (int i = 0, j = WINNUM - 1; j >= 0; i++, j--) {
-            if (map[i + d][j + d] == ch) {
+        for (int i = 0, j = SIZE - 1; i < WIN_LENGTH; i++, j--) {
+            if (map[i + c][j - d] == ch) {
                 straightNum++;
-                if (straightNum == WINNUM) {
+                if (straightNum == WIN_LENGTH) {
                     flag = true;
                     break;
                 }
