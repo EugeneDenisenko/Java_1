@@ -173,22 +173,20 @@ public class HomeWorkApp4 {
     }
 
     private static boolean isWinLine(char ch, int WIN_LENGTH) {
-        boolean flag = false;
         for (int i = 0; i < SIZE; i++) {
             int numbers = 0;
             for (int j = 0; j < SIZE; j++) {
                 if (map[i][j] == ch) {
                     numbers++;
-                    if (numbers == WIN_LENGTH) {
-                        flag = true;
-                        break;
-                    }
                 } else {
                     numbers = 0;
                 }
+                if (numbers == WIN_LENGTH) {
+                    return true;
+                }
             }
         }
-        return flag;
+        return false;
     }
 
     private static boolean isWinColumn(char ch, int WIN_LENGTH) {
@@ -214,7 +212,7 @@ public class HomeWorkApp4 {
         boolean winDiag = false;
         for (int c = 0; c <= SIZE - WIN_LENGTH; c++) {
             for (int d = 0; d <= SIZE - WIN_LENGTH; d++) {
-                if (checkStraightDiagonal(ch, c, d, WIN_LENGTH) || checkReverseDiagonal(ch, c, d, WIN_LENGTH)) {
+                if (isStraightDiagonal(ch, c, d, WIN_LENGTH) || isReverseDiagonal(ch, c, d, WIN_LENGTH)) {
                     winDiag = true;
                 }
             }
@@ -222,7 +220,7 @@ public class HomeWorkApp4 {
         return winDiag;
     }
 
-    private static boolean checkStraightDiagonal(char ch, int c, int d, int WIN_LENGTH) {
+    private static boolean isStraightDiagonal(char ch, int c, int d, int WIN_LENGTH) {
         boolean flag = false;
         int straightNum = 0;
         for (int i = 0; i < WIN_LENGTH; i++) {
@@ -239,7 +237,7 @@ public class HomeWorkApp4 {
         return flag;
     }
 
-    private static boolean checkReverseDiagonal(char ch, int c, int d, int WIN_LENGTH) {
+    private static boolean isReverseDiagonal(char ch, int c, int d, int WIN_LENGTH) {
         boolean flag = false;
         int straightNum = 0;
         for (int i = 0, j = SIZE - 1; i < WIN_LENGTH; i++, j--) {
