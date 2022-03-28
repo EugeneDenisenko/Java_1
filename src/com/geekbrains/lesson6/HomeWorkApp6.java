@@ -18,7 +18,7 @@ public class HomeWorkApp6 {
         dogVenia.swim(15);
         System.out.println("-----");
 
-        System.out.println("Было создано " + Animal.counterOfAnimal + " животных.");
+        System.out.println("Было создано " + Animal.getCounterOfAnimal() + " животных.");
         System.out.println("Было создано " + Dog.getCounterOfDogs() + " собак.");
         System.out.println("Было создано " + Cat.getCounterOfCats() + " котов.");
     }
